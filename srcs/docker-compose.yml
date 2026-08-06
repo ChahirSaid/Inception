@@ -72,6 +72,34 @@ services:
     ports:
       - 8085:8085
 
+  portainer:
+    build: ./requirements/bonus/portainer
+    image: portainer
+    container_name: portainer
+    restart: always
+    networks:
+      - inception
+    ports:
+      - 9443:9443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+  ftp :
+    build : ./requirements/bonus/ftp/
+    container_name : ftp
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    networks : 
+      - inception
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+      - "10000-11000:10000-11000"
+    depends_on:
+      - wordpress
+
 volumes:
   mariadb_data:
     driver: local
