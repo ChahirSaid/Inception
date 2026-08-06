@@ -49,6 +49,29 @@ services:
       - inception
     depends_on:
       - wordpress
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    image: adminer
+    container_name: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    ports:
+      - 8080:8080
+
+  website:
+    build: ./requirements/bonus/website
+    image: website
+    container_name: website
+    restart: always
+    networks:
+      - inception
+    ports:
+      - 8085:8085
+
 volumes:
   mariadb_data:
     driver: local
