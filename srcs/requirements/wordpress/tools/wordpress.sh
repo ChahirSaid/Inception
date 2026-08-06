@@ -1,11 +1,11 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 mkdir -p /run/php
 echo "inside wordpress"
 
-while ! mariadb -h ${MARIA_DB_NAME} -u ${USER} -p${USER_PASSWORD}  &>/dev/null; do
+while ! mariadb -h mariadb -u ${USER} -p${USER_PASSWORD}  &>/dev/null; do
 	sleep 1;
 done
 
@@ -40,7 +40,14 @@ echo "===============WordPress Installation============"
         --user_pass=${WP_USER_PASSWORD} \
         --allow-root
 
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_PORT 6379 --allow-root
+    wp plugin install redis-cache --activate --allow-root
+    wp redis enable --allow-root
+
+
     chown -R www-data:www-data /var/www/html
+
 fi
 
 exec /usr/sbin/php-fpm8.2 -F 

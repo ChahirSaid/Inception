@@ -40,6 +40,15 @@ services:
     env_file:
       - .env
 
+  redis:
+    build: ./requirements/bonus/redis
+    image: redis
+    container_name: redis
+    restart: always
+    networks:
+      - inception
+    depends_on:
+      - wordpress
 volumes:
   mariadb_data:
     driver: local
