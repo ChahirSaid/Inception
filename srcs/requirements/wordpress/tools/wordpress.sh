@@ -3,7 +3,6 @@
 set -e
 
 mkdir -p /run/php
-echo "inside wordpress"
 
 while ! mariadb -h mariadb -u ${USER} -p${USER_PASSWORD}  &>/dev/null; do
 	sleep 1;
@@ -11,9 +10,9 @@ done
 
 if ! wp core is-installed --path=/var/www/html --allow-root; then
 
-	echo "inside wordpress"
+	echo "========fetching========"
 	wp core download --path=/var/www/html --allow-root
-	echo "inside wordpress v2"
+	echo "========configuring========"
 	wp config create \
     --dbname="$MARIA_DB_NAME" \
     --dbuser="$USER" \
@@ -22,7 +21,7 @@ if ! wp core is-installed --path=/var/www/html --allow-root; then
     --path=/var/www/html \
     --allow-root
 
-echo "===============WordPress Installation============"
+    echo "========installing========"
     wp core install \
         --url=${DOMAIN_NAME} \
         --title="Inception" \
@@ -44,7 +43,6 @@ echo "===============WordPress Installation============"
     wp config set WP_REDIS_PORT 6379 --allow-root
     wp plugin install redis-cache --activate --allow-root
     wp redis enable --allow-root
-
 
     chown -R www-data:www-data /var/www/html
 

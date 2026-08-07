@@ -1,9 +1,7 @@
-name: inception
-
 services:
   mariadb:
     build: ./requirements/mariadb/
-    image: mariadb
+    image: mariadb:inc
     container_name: mariadb
     restart: always
     volumes:
@@ -15,7 +13,7 @@ services:
 
   nginx:
     build: ./requirements/nginx
-    image: nginx
+    image: nginx:inc
     container_name: nginx
     restart: always
     volumes:
@@ -30,7 +28,7 @@ services:
       - .env
   wordpress:
     build: ./requirements/wordpress
-    image: wordpress
+    image: wordpress:inc
     container_name: wordpress
     restart: always
     volumes:
@@ -42,7 +40,7 @@ services:
 
   redis:
     build: ./requirements/bonus/redis
-    image: redis
+    image: redis:inc
     container_name: redis
     restart: always
     networks:
@@ -52,7 +50,7 @@ services:
 
   adminer:
     build: ./requirements/bonus/adminer
-    image: adminer
+    image: adminer:inc
     container_name: adminer
     restart: always
     depends_on:
@@ -64,7 +62,7 @@ services:
 
   website:
     build: ./requirements/bonus/website
-    image: website
+    image: website:inc
     container_name: website
     restart: always
     networks:
@@ -74,7 +72,7 @@ services:
 
   portainer:
     build: ./requirements/bonus/portainer
-    image: portainer
+    image: portainer:inc
     container_name: portainer
     restart: always
     networks:
@@ -86,6 +84,7 @@ services:
       
   ftp :
     build : ./requirements/bonus/ftp/
+    image: ftp:inc
     container_name : ftp
     restart: always
     volumes:

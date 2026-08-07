@@ -1,4 +1,3 @@
-NAME		= inception
 DATA_PATH	= /home/schahir/data
 
 COMPOSE	= docker compose \
@@ -9,6 +8,8 @@ all:
 	@mkdir -p $(DATA_PATH)/mariadb
 	@mkdir -p $(DATA_PATH)/wordpress
 	$(COMPOSE) up -d --build
+
+up: all
 
 down:
 	$(COMPOSE) down

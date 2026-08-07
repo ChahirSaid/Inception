@@ -5,10 +5,9 @@ set -e
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 
-rm -rf /var/lib/mysql/*
 if [ ! -d /var/lib/mysql/mysql ]; then
 
-	echo "wst if"
+	echo "=====Server starting====="
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 	service mariadb start
 
