@@ -94,13 +94,16 @@ See `USER_DOC.md` and `DEV_DOC.md` for detailed usage and setup instructions.
 
 ## Resources
 
+- [Kode kloud](https://kodekloud.com/studio/labs/docker)
 - [Docker documentation](https://docs.docker.com/)
 - [Docker Compose file reference](https://docs.docker.com/compose/compose-file/)
 - [NGINX documentation](https://nginx.org/en/docs/)
 - [WordPress CLI (WP-CLI) documentation](https://wp-cli.org/)
 - [MariaDB documentation](https://mariadb.com/kb/en/documentation/)
 - [PHP-FPM documentation](https://www.php.net/manual/en/install.fpm.php)
-- 42 Inception subject PDF (provided by the school)
+- 42 Inception subject PDF
+
+## AI usage
 
 **AI usage:** An AI assistant was used as a support tool during this project, mainly to help debug Docker entrypoint scripts and NGINX configuration issues, to clarify how WP-CLI automation commands work, and to build a deeper conceptual understanding of how the stack fits together end-to-end (DNS resolution, TLS handshake, FastCGI communication between NGINX and PHP-FPM, and MariaDB internals). All AI-assisted explanations were cross-checked against official documentation and tested manually before being relied upon; no code was used without being fully understood.
 

@@ -19,6 +19,7 @@ if [ ! -d /var/lib/mysql/mysql ]; then
 	mariadb -u root -e "CREATE USER IF NOT EXISTS '${USER}'@'%' IDENTIFIED BY '${USER_PASSWORD}';"
 	mariadb -u root -e "GRANT ALL PRIVILEGES ON \`${MARIA_DB_NAME}\`.* TO '${USER}'@'%';"
 	mariadb -u root -e "FLUSH PRIVILEGES;"
+	mariadb -u root -e "DROP USER ''"
 	mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${ROOT_PASSWORD}';"
 	mariadb-admin -u root -p"${ROOT_PASSWORD}" shutdown
 fi
