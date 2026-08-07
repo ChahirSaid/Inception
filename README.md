@@ -31,11 +31,19 @@ All containers communicate over a dedicated Docker bridge network, and persisten
 
 ### Setup
 1. Clone the repository.
-2. Add the domain to your local DNS resolution so it points to the machine's own IP:
+2. Add the domain to your local DNS resolution so it points to the machine's own IP. Open `/etc/hosts` with a text editor as root:
+   ```bash
+   sudo nano /etc/hosts
+   ```
+   and add this line at the end of the file:
    ```
    127.0.0.1   schahir.42.fr
    ```
-   (add this line to `/etc/hosts`)
+   Or do it in one step from the terminal:
+   ```bash
+   echo "127.0.0.1   schahir.42.fr" | sudo tee -a /etc/hosts
+   ```
+   This tells your machine to resolve `schahir.42.fr` to itself (`127.0.0.1`) instead of trying to look it up on the internet — it's a local-only override, not a real DNS record, so it only works on this machine.
 3. Review/adjust the variables in `srcs/.env` if needed (database credentials, WordPress admin, FTP credentials, domain name). Example `.env`:
    ```
    MARIA_DB_NAME=maria
